@@ -1,15 +1,20 @@
 "use client";
 import { css } from "@emotion/react";
 import Header from "@/app/components/header";
+import PageLinks from "@/app/components/page-links";
 
-const a = css`
-  color: red;
+const top = css`
+  background: #053a68;
+  padding: 32px;
 `;
 
 export default function CardListPage() {
   return (
-    <div>
+    <>
       <Header />
-    </div>
+      <div css={top}>
+        <PageLinks />
+      </div>
+    </>
   );
 }

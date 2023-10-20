@@ -2,8 +2,11 @@
 import { css } from "@emotion/react";
 
 const main = css`
-  height: 20px;
+  height: 40px;
+  line-height: 40px;
   background-color: #0d0d0d;
+  text-align: center;
+  font-size: 20px;
 `;
 
 export default function Header() {
