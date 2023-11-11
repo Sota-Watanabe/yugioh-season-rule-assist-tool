@@ -4,8 +4,7 @@ import Header from "@/app/components/header";
 import PageLinks from "@/app/components/page-links";
 
 const top = css`
-  background: #053a68;
-  padding: 32px;
+  background: #084371;
 `;
 
 export default function CardListPage() {

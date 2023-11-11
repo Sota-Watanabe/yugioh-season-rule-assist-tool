@@ -10,47 +10,19 @@ import { useEffect } from "react";
 const main = css`
   margin: auto;
   display: flex;
-  gap: 32px;
-  max-width: 800px;
+  gap: 25px;
+  width: 1000px;
+  background: #084371;
 `;
 
-const linkColors = {
-  cardList: css`
-    background: #fcaeb0;
-    :hover {
-      background: #fcaeb0;
-      opacity: 0.6;
-    }
-  `,
-  multiCard: css`
-    background: #d9d0b6;
-    :hover {
-      background: #d9d0b6;
-      opacity: 0.6;
-    }
-  `,
-  limitRegulation: css`
-    background: #99e5c4;
-    :hover {
-      background: #99e5c4;
-      opacity: 0.6;
-    }
-  `,
-  randomCard: css`
-    background: #96c8f2;
-    :hover {
-      background: #96c8f2;
-      opacity: 0.6;
-    }
-  `,
-};
-
 const pageLinkButton = css`
-  font-size: 20px;
-  width: 300px;
-  height: 80px;
-  color: #071320;
-  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  font-family: Dela Gothic One;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export default function PageLinks() {
@@ -64,13 +36,17 @@ export default function PageLinks() {
   console.log("data", value?.docs[0].data());
   return (
     <div css={main}>
-      <Button css={[linkColors.cardList, pageLinkButton]}>カードリスト</Button>
-      <Button css={[linkColors.multiCard, pageLinkButton]}>汎用カード</Button>
-      <Button css={[linkColors.limitRegulation, pageLinkButton]}>
+      <Button className="delaGothicOne" css={pageLinkButton}>
+        カードリスト
+      </Button>
+      <Button className="delaGothicOne" css={pageLinkButton}>
+        汎用カード
+      </Button>
+      <Button className="delaGothicOne" css={pageLinkButton}>
         制限リスト
       </Button>
-      <Button css={[linkColors.randomCard, pageLinkButton]}>
-        ランダムカード
+      <Button className="delaGothicOne" css={pageLinkButton}>
+        ランダムパック
       </Button>
     </div>
   );
