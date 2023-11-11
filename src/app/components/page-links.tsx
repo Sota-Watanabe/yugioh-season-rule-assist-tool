@@ -10,8 +10,8 @@ import { useEffect } from "react";
 const main = css`
   margin: auto;
   display: flex;
-  gap: 25px;
-  width: 1000px;
+  gap: 16px;
+  width: 968px;
   background: #084371;
 `;
 
