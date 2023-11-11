@@ -1,6 +1,11 @@
 "use client";
 import { css } from "@emotion/react";
 import { Button } from "@mui/material";
+import { firestore } from "../../firebase";
+import { config } from "../../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { useEffect } from "react";
 
 const main = css`
   margin: auto;
@@ -49,6 +54,14 @@ const pageLinkButton = css`
 `;
 
 export default function PageLinks() {
+  const maybeRef = collection(firestore, "cards");
+  const [value, loading] = useCollection(
+    query(maybeRef, where("atk", "==", 3000), where("level", "==", 3))
+  );
+  if (loading) {
+    return <p>ローディング</p>;
+  }
+  console.log("data", value?.docs[0].data());
   return (
     <div css={main}>
       <Button css={[linkColors.cardList, pageLinkButton]}>カードリスト</Button>
