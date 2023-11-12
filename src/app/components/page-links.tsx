@@ -25,21 +25,13 @@ const pageLinkButton = css`
   line-height: normal;
 `;
 
-export default function PageLinks() {
+export const PageLinks = () => {
   return (
     <div css={main}>
-      <Button css={pageLinkButton}>
-        カードリスト
-      </Button>
-      <Button css={pageLinkButton}>
-        汎用カード
-      </Button>
-      <Button css={pageLinkButton}>
-        制限リスト
-      </Button>
-      <Button css={pageLinkButton}>
-        ランダムパック
-      </Button>
+      <Button css={pageLinkButton}>カードリスト</Button>
+      <Button css={pageLinkButton}>汎用カード</Button>
+      <Button css={pageLinkButton}>制限リスト</Button>
+      <Button css={pageLinkButton}>ランダムパック</Button>
     </div>
   );
-}
+};

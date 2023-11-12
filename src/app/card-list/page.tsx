@@ -1,7 +1,7 @@
 "use client";
 import { css } from "@emotion/react";
-import Header from "@/app/components/header";
-import PageLinks from "@/app/components/page-links";
+import { Header } from "@/app/components/header";
+import { PageLinks } from "@/app/components/page-links";
 import {
   defaultValues,
   useFetchCards,
@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import FilterList from "@/app/components/filter-list";
+import { FilterList } from "@/app/components/filter-list";
 import { FormProvider, useForm } from "react-hook-form";
 
 const top = css`
@@ -44,7 +44,6 @@ const header = css`
 `;
 
 export default function CardListPage() {
-  console.log("CardListPage");
   const useFormMethods = useForm({
     defaultValues,
   });

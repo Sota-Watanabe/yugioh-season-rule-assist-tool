@@ -28,7 +28,7 @@ export const blockStyle = css`
   line-height: 32px;
   background: #012c53;
 `;
-export default function FilterList() {
+export const FilterList = () => {
   const { register } = useFormContext();
 
   return (
@@ -52,4 +52,4 @@ export default function FilterList() {
       <button type="submit">ボタン</button>
     </div>
   );
-}
+};

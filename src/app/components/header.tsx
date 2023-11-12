@@ -1,4 +1,3 @@
-
 import { css } from "@emotion/react";
 
 const main = css`
@@ -15,6 +14,6 @@ const main = css`
   background: #084371;
 `;
 
-export default function Header() {
+export const Header = () => {
   return <div css={main}>遊戯王 5期までデータベース</div>;
-}
+};
