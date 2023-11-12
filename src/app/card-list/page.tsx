@@ -11,6 +11,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { FilterList } from "@/app/components/filter-list";
 import { FormProvider, useForm } from "react-hook-form";
+import { CardList } from "@/app/components/card-list";
 
 const top = css`
   background: #084371;
@@ -48,13 +49,15 @@ export default function CardListPage() {
     defaultValues,
   });
   const { getValues, handleSubmit } = useFormMethods;
-  const { fetchCards, updateCardFilter } = useFetchCards(getValues());
+  const { fetchCards, fetchCardsState, updateCardFilter } = useFetchCards(
+    getValues()
+  );
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  console.log("fetch", fetchCards);
   const onSubmit = () => {
     updateCardFilter(getValues());
-    // updateCardFilter
+    // setIsOpen(false) // TODO: 閉じるか迷い中
   };
+
   return (
     <>
       <Header />
@@ -74,7 +77,12 @@ export default function CardListPage() {
               )}
             </div>
             {isOpen && <FilterList />}
-            {/* <CardList /> */}
+            {fetchCards?.length !== 0 && (
+              <CardList
+                values={fetchCards}
+                isLoading={fetchCardsState.isLoading}
+              />
+            )}
             {/* <PageNation /> */}
           </form>
         </FormProvider>
