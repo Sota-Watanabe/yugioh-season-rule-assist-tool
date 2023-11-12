@@ -14,6 +14,17 @@ import {
 
 const main = css`
   padding: 12px 20px;
+  .submit {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    button {
+      width: 80px;
+      height: 32px;
+      background: #ffba00;
+      font-size: 20px;
+    }
+  }
 `;
 const container = css`
   display: flex;
@@ -93,7 +104,9 @@ export const FilterList = () => {
           />
         </div>
       </div>
-      <button type="submit">ボタン</button>
+      <div className="submit">
+        <button type="submit">検索</button>
+      </div>
     </div>
   );
 };
