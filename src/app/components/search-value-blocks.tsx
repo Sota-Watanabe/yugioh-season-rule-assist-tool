@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 type Props = {
-  register: UseFormRegisterReturn;
+  searchFilter: string;
   searchOptions: { key: string; label: string }[];
   width?: string;
 };
@@ -36,17 +36,18 @@ const checkbox = css`
 
 export const SearchValueBlocks: React.FC<Props> = (props) => {
   const width = props.width || "800px";
+  const { register } = useFormContext();
   return (
     <div css={container(width)}>
       {props.searchOptions.map((option) => {
         return (
-          <div css={checkbox} key={option.label}>
-            <label htmlFor={option.label}>
+          <div css={checkbox} key={`${props.searchFilter}.${option.label}`}>
+            <label htmlFor={`${props.searchFilter}.${option.label}`}>
               <input
-                id={option.label}
+                id={`${props.searchFilter}.${option.label}`}
                 type="checkbox"
                 value={option.key}
-                {...props.register} // 追記
+                {...register(props.searchFilter)} // 追記
               />
               <span>{option.label}</span>
             </label>

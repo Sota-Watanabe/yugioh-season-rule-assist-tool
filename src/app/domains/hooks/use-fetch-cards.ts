@@ -46,7 +46,7 @@ export const useFetchCards = (values: typeof defaultValues) => {
       searchQuery,
       where("card_properties.monster_type", "in", filter.monster)
     );
-  if (filter.monster.length)
+  if (filter.card.length)
     searchQuery = query(
       searchQuery,
       where("card_properties.card_type", "array-contains-any", filter.card)

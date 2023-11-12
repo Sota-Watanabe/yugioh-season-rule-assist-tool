@@ -48,29 +48,27 @@ const blockStyle = css`
   background: #012c53;
 `;
 export const FilterList = () => {
-  const { register } = useFormContext();
-
   return (
     <div css={main}>
       <div css={container}>
         <div>
           <div css={blockStyle}>何期</div>
           <SearchValueBlocks
-            register={register("season")}
+            searchFilter="season"
             searchOptions={searchSeasonOptions}
           />
         </div>
         <div>
           <div css={blockStyle}>04環境</div>
           <SearchValueBlocks
-            register={register("zeroFour")}
+            searchFilter="zeroFour"
             searchOptions={searchZeroFourOptions}
           />
         </div>
         <div>
           <div css={blockStyle}>属性</div>
           <SearchValueBlocks
-            register={register("attribute")}
+            searchFilter="attribute"
             searchOptions={searchAttributeOptions}
             width="700px"
           />
@@ -78,28 +76,28 @@ export const FilterList = () => {
         <div>
           <div css={blockStyle}>呪文</div>
           <SearchValueBlocks
-            register={register("incantation")}
+            searchFilter="incantation"
             searchOptions={searchIncantationOptions}
           />
         </div>
         <div>
           <div css={blockStyle}>種族</div>
           <SearchValueBlocks
-            register={register("monster")}
+            searchFilter="monster"
             searchOptions={searchMonsterOptions}
           />
         </div>
         <div>
           <div css={blockStyle}>種類</div>
           <SearchValueBlocks
-            register={register("card")}
+            searchFilter="card"
             searchOptions={searchCardOptions}
           />
         </div>
         <div>
           <div css={blockStyle}>レベル</div>
           <SearchValueBlocks
-            register={register("level")}
+            searchFilter="level"
             searchOptions={searchLevelOptions}
           />
         </div>
