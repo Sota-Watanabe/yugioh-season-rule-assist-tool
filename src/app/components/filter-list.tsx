@@ -1,14 +1,6 @@
 "use client";
 import { css } from "@emotion/react";
-import { Button } from "@mui/material";
-import { firestore } from "../../firebase";
-import { config } from "../../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { useEffect, useState } from "react";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { SearchValueBlocks } from "@/app/components/search-value-blocks";
 import {
   searchSeasonOptions,
@@ -37,37 +29,27 @@ export const blockStyle = css`
   background: #012c53;
 `;
 export default function FilterList() {
-  const { register, handleSubmit, getValues } = useForm({
-    defaultValues: { season: [], zeroFour: [] },
-  });
-  // const { fetchCard } = useFetchFilteredCard();
-
-  const onSubmit = () => {
-    const values = getValues();
-    // fetchCard({ page: 1, values });
-  };
+  const { register } = useFormContext();
 
   return (
     <div css={main}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div css={container}>
-          <div>
-            <div css={blockStyle}>何期</div>
-            <SearchValueBlocks
-              register={register("season")}
-              searchOptions={searchSeasonOptions}
-            />
-          </div>
-          <div>
-            <div css={blockStyle}>04環境</div>
-            <SearchValueBlocks
-              register={register("zeroFour")}
-              searchOptions={searchZeroFourOptions}
-            />
-          </div>
+      <div css={container}>
+        <div>
+          <div css={blockStyle}>何期</div>
+          <SearchValueBlocks
+            register={register("season")}
+            searchOptions={searchSeasonOptions}
+          />
         </div>
-        <button type="submit">ボタン</button>
-      </form>
+        <div>
+          <div css={blockStyle}>04環境</div>
+          <SearchValueBlocks
+            register={register("zeroFour")}
+            searchOptions={searchZeroFourOptions}
+          />
+        </div>
+      </div>
+      <button type="submit">ボタン</button>
     </div>
   );
 }

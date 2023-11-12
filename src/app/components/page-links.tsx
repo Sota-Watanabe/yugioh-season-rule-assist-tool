@@ -26,26 +26,18 @@ const pageLinkButton = css`
 `;
 
 export default function PageLinks() {
-  const maybeRef = collection(firestore, "cards");
-  const [value, loading] = useCollection(
-    query(maybeRef, where("atk", "==", 3000), where("level", "==", 3))
-  );
-  if (loading) {
-    return <p>ローディング</p>;
-  }
-  console.log("data", value?.docs[0].data());
   return (
     <div css={main}>
-      <Button className="delaGothicOne" css={pageLinkButton}>
+      <Button css={pageLinkButton}>
         カードリスト
       </Button>
-      <Button className="delaGothicOne" css={pageLinkButton}>
+      <Button css={pageLinkButton}>
         汎用カード
       </Button>
-      <Button className="delaGothicOne" css={pageLinkButton}>
+      <Button css={pageLinkButton}>
         制限リスト
       </Button>
-      <Button className="delaGothicOne" css={pageLinkButton}>
+      <Button css={pageLinkButton}>
         ランダムパック
       </Button>
     </div>

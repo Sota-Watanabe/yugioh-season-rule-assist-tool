@@ -26,8 +26,8 @@ const checkbox = css`
     text-align: center;
   }
   input:checked + span {
-    color: #fff; /* 文字色を白に */
-    background: #12a6e6; /* 背景色を薄い赤に */
+    color: #fff; 
+    background: #12a6e6; 
   }
 `;
 
