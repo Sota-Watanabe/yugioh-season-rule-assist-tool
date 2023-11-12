@@ -3,6 +3,11 @@ import { css } from "@emotion/react";
 import { useFormContext } from "react-hook-form";
 import { SearchValueBlocks } from "@/app/components/search-value-blocks";
 import {
+  searchAttributeOptions,
+  searchCardOptions,
+  searchIncantationOptions,
+  searchLevelOptions,
+  searchMonsterOptions,
   searchSeasonOptions,
   searchZeroFourOptions,
 } from "@/app/domains/models/search-params";
@@ -19,13 +24,16 @@ const container = css`
     gap: 3px;
   }
 `;
-export const blockStyle = css`
+const blockStyle = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 110px;
   font-size: 15px;
   color: #fff;
   min-height: 32px;
   text-align: center;
-  line-height: 32px;
+  line-height: 100%;
   background: #012c53;
 `;
 export const FilterList = () => {
@@ -46,6 +54,42 @@ export const FilterList = () => {
           <SearchValueBlocks
             register={register("zeroFour")}
             searchOptions={searchZeroFourOptions}
+          />
+        </div>
+        <div>
+          <div css={blockStyle}>属性</div>
+          <SearchValueBlocks
+            register={register("attribute")}
+            searchOptions={searchAttributeOptions}
+            width="700px"
+          />
+        </div>
+        <div>
+          <div css={blockStyle}>呪文</div>
+          <SearchValueBlocks
+            register={register("incantation")}
+            searchOptions={searchIncantationOptions}
+          />
+        </div>
+        <div>
+          <div css={blockStyle}>種族</div>
+          <SearchValueBlocks
+            register={register("monster")}
+            searchOptions={searchMonsterOptions}
+          />
+        </div>
+        <div>
+          <div css={blockStyle}>種類</div>
+          <SearchValueBlocks
+            register={register("card")}
+            searchOptions={searchCardOptions}
+          />
+        </div>
+        <div>
+          <div css={blockStyle}>レベル</div>
+          <SearchValueBlocks
+            register={register("level")}
+            searchOptions={searchLevelOptions}
           />
         </div>
       </div>

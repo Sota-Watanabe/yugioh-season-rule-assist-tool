@@ -4,11 +4,14 @@ import { UseFormRegisterReturn } from "react-hook-form";
 type Props = {
   register: UseFormRegisterReturn;
   searchOptions: { key: string; label: string }[];
+  width?: string;
 };
 
-const container = css`
+const container = (width?: string) => css`
   display: flex;
+  width: ${width};
   gap: 3px;
+  flex-wrap: wrap;
 `;
 
 const checkbox = css`
@@ -26,14 +29,15 @@ const checkbox = css`
     text-align: center;
   }
   input:checked + span {
-    color: #fff; 
-    background: #12a6e6; 
+    color: #fff;
+    background: #12a6e6;
   }
 `;
 
 export const SearchValueBlocks: React.FC<Props> = (props) => {
+  const width = props.width || "800px";
   return (
-    <div css={container}>
+    <div css={container(width)}>
       {props.searchOptions.map((option) => {
         return (
           <div css={checkbox} key={option.label}>

@@ -63,7 +63,6 @@ export const Card: React.FC<Props> = ({ value }) => {
   const isMonsterCard =
     value.card_properties.attribute !== "魔" &&
     value.card_properties.attribute !== "罠";
-  console.log(value.card_properties.attribute);
   return (
     <div css={main}>
       <div className="img-container">
