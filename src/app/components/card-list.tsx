@@ -14,11 +14,9 @@ const main = css`
 
 type Props = {
   values?: CardType[];
-  isLoading: boolean;
 };
 
-export const CardList: React.FC<Props> = ({ values, isLoading }) => {
-  if (isLoading) return <p>ローディング</p>;
+export const CardList: React.FC<Props> = ({ values }) => {
   if (!values) return;
   return (
     <div css={main}>

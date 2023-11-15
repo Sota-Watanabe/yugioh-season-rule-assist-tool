@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { Header } from "@/app/components/header";
 import { PageLinks } from "@/app/components/page-links";
 import {
+  PERPAGE,
   defaultValues,
   useFetchCards,
 } from "@/app/domains/hooks/use-fetch-cards";
@@ -12,6 +13,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { FilterList } from "@/app/components/filter-list";
 import { FormProvider, useForm } from "react-hook-form";
 import { CardList } from "@/app/components/card-list";
+import { Pagination } from "@mui/material";
 
 const top = css`
   background: #084371;
@@ -44,14 +46,26 @@ const header = css`
   }
 `;
 
+const pagination = css`
+  margin: 40px 0 80px;
+  display: flex;
+  justify-content: center;
+`;
+
+const searchResult = css`
+  font-size: 18px;
+  span {
+    font-size: 22px;
+  }
+`;
+
 export default function CardListPage() {
   const useFormMethods = useForm({
     defaultValues,
   });
   const { getValues, handleSubmit } = useFormMethods;
-  const { fetchCards, fetchCardsState, updateCardFilter } = useFetchCards(
-    getValues()
-  );
+  const { fetchCards, updateCardFilter, totalCount, page, updatePage } =
+    useFetchCards(getValues());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onSubmit = () => {
     updateCardFilter(getValues());
@@ -77,13 +91,22 @@ export default function CardListPage() {
               )}
             </div>
             {isOpen && <FilterList />}
-            {fetchCards?.length !== 0 && (
-              <CardList
-                values={fetchCards}
-                isLoading={fetchCardsState.isLoading}
-              />
+            {fetchCards.cards?.length !== 0 && (
+              <>
+                <p css={searchResult}>
+                  検索結果: <span>{totalCount} </span>件
+                </p>
+                <CardList values={fetchCards.cards} />
+              </>
             )}
-            {/* <PageNation /> */}
+            <div css={pagination}>
+              <Pagination
+                count={Math.ceil(totalCount / PERPAGE)} //総ページ数
+                color="primary"
+                onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
+                page={page}
+              />
+            </div>
           </form>
         </FormProvider>
       </div>

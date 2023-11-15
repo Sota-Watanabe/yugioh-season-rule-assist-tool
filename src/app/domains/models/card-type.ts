@@ -26,4 +26,5 @@ export type CardType = {
     def: number;
   };
   text: string;
+  useful?: boolean;
 };

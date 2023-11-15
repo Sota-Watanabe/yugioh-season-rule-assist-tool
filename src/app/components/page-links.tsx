@@ -1,11 +1,6 @@
 "use client";
 import { css } from "@emotion/react";
 import { Button } from "@mui/material";
-import { firestore } from "../../firebase";
-import { config } from "../../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { useEffect } from "react";
 
 const main = css`
   margin: auto;
@@ -24,7 +19,6 @@ const pageLinkButton = css`
   font-weight: 400;
   line-height: normal;
 `;
-
 export const PageLinks = () => {
   return (
     <div css={main}>
