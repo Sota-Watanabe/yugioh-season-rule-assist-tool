@@ -10,6 +10,9 @@ const main = css`
     align-items: center;
     margin-right: 9px;
   }
+  .text-container {
+    width: 100%;
+  }
   .first-tier {
     display: flex;
     align-items: center;
@@ -53,6 +56,9 @@ const main = css`
     height: 1px;
     background-color: #989898;
   }
+  a {
+    cursor: pointer;
+  }
 `;
 
 type Props = {
@@ -68,7 +74,7 @@ export const Card: React.FC<Props> = ({ value }) => {
       <div className="img-container">
         <img src={value.image_url} alt="card_url" width={113} height={164} />
       </div>
-      <div>
+      <div className="text-container">
         <div className="first-tier">
           <div>
             <p className="ruby">{value.card_name.name_ruby}</p>
