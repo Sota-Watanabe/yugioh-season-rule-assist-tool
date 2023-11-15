@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CardType } from "@/app/domains/models/card-type";
-import database from "@/app/public/database.json";
+import database from "@/../../public/database.json";
 
 export const PERPAGE = 10;
 
