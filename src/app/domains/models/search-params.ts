@@ -77,6 +77,7 @@ export const searchCardOptions = [
   { key: "通常", label: "通常" },
   { key: "効果", label: "効果" },
   { key: "融合", label: "融合" },
+  { key: "儀式", label: "儀式" },
   { key: "トゥーン", label: "トゥーン" },
   { key: "デュアル", label: "デュアル" },
   { key: "ユニオン", label: "ユニオン" },
