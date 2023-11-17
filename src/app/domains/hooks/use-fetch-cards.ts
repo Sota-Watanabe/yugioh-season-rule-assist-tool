@@ -5,6 +5,7 @@ import database from "@/../../public/database.json";
 export const PERPAGE = 10;
 
 export const defaultValues = {
+  searchText: "",
   season: [] as string[],
   zeroFour: [] as string[],
   attribute: [] as string[],
@@ -50,6 +51,15 @@ export const useFetchCards = (values: typeof defaultValues) => {
     cards = cards.filter((card) =>
       filter.level.includes(String(card.card_properties.level))
     );
+
+  if (filter.searchText !== "") {
+    cards = cards.filter((card) => {
+      return (
+        card.card_name.name.indexOf(filter.searchText) > -1 ||
+        card.card_name.name_ruby.indexOf(filter.searchText) > -1
+      );
+    });
+  }
 
   const totalCount = cards.length;
   // NOTE: ページング

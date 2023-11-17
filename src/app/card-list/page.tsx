@@ -15,6 +15,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { CardList } from "@/app/components/card-list";
 import { Pagination } from "@mui/material";
 import { Empty } from "@/app/components/empty";
+import { TextFilter } from "@/app/components/text-filter";
 
 const top = css`
   background: #084371;
@@ -22,12 +23,12 @@ const top = css`
 
 const main = css`
   width: 968px;
+  padding: 20px 0;
   margin: auto;
 `;
 
 const header = css`
   height: 44px;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -85,6 +86,7 @@ export default function CardListPage() {
       <div css={main}>
         <FormProvider {...useFormMethods}>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <TextFilter />
             <div css={header} onClick={() => setIsOpen(!isOpen)}>
               <p className="text">カードフィルター</p>
               {isOpen && (
