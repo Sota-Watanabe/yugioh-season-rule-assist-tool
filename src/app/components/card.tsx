@@ -113,7 +113,12 @@ export const Card: React.FC<Props> = ({ value }) => {
           </div>
         )}
         <div className="horizontal-line" />
-        <div className="third-tier">{value.text}</div>
+        <div
+          className="third-tier"
+          dangerouslySetInnerHTML={{
+            __html: value.text,
+          }}
+        ></div>
       </div>
     </div>
   );

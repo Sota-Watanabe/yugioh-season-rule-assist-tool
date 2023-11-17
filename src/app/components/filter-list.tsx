@@ -23,6 +23,7 @@ const main = css`
       height: 32px;
       background: #ffba00;
       font-size: 20px;
+      cursor: pointer;
     }
   }
 `;

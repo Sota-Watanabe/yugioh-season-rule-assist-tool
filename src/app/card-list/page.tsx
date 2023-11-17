@@ -14,6 +14,7 @@ import { FilterList } from "@/app/components/filter-list";
 import { FormProvider, useForm } from "react-hook-form";
 import { CardList } from "@/app/components/card-list";
 import { Pagination } from "@mui/material";
+import { Empty } from "@/app/components/empty";
 
 const top = css`
   background: #084371;
@@ -32,6 +33,7 @@ const header = css`
   justify-content: space-between;
   background: #477490;
   color: #fff;
+  cursor: pointer;
   .text {
     width: 900px;
     color: #fff;
@@ -72,6 +74,8 @@ export default function CardListPage() {
     // setIsOpen(false) // TODO: 閉じるか迷い中
   };
 
+  const isEmpty = fetchCards.totalCount === 0;
+
   return (
     <>
       <Header />
@@ -84,29 +88,30 @@ export default function CardListPage() {
             <div css={header} onClick={() => setIsOpen(!isOpen)}>
               <p className="text">カードフィルター</p>
               {isOpen && (
-                <KeyboardArrowDownIcon fontSize="large" className="icon" />
+                <KeyboardArrowUpIcon fontSize="large" className="icon" />
               )}
               {isOpen || (
-                <KeyboardArrowUpIcon fontSize="large" className="icon" />
+                <KeyboardArrowDownIcon fontSize="large" className="icon" />
               )}
             </div>
             {isOpen && <FilterList />}
-            {fetchCards.cards?.length !== 0 && (
+            {isEmpty && <Empty />}
+            {isEmpty || (
               <>
                 <p css={searchResult}>
                   検索結果: <span>{totalCount} </span>件
                 </p>
                 <CardList values={fetchCards.cards} />
+                <div css={pagination}>
+                  <Pagination
+                    count={Math.ceil(totalCount / PERPAGE)} //総ページ数
+                    color="primary"
+                    onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
+                    page={page}
+                  />
+                </div>
               </>
             )}
-            <div css={pagination}>
-              <Pagination
-                count={Math.ceil(totalCount / PERPAGE)} //総ページ数
-                color="primary"
-                onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
-                page={page}
-              />
-            </div>
           </form>
         </FormProvider>
       </div>
