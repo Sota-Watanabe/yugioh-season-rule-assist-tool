@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CardType } from "@/app/domains/models/card-type";
 import database from "@/../../public/database.json";
+import Fuse from "fuse.js";
 
 export const PERPAGE = 10;
 
@@ -51,14 +52,13 @@ export const useFetchCards = (values: typeof defaultValues) => {
     cards = cards.filter((card) =>
       filter.level.includes(String(card.card_properties.level))
     );
-
   if (filter.searchText !== "") {
-    cards = cards.filter((card) => {
-      return (
-        card.card_name.name.indexOf(filter.searchText) > -1 ||
-        card.card_name.name_ruby.indexOf(filter.searchText) > -1
-      );
+    const fuse = new Fuse(cards, {
+      threshold: 0.2,
+      distance: 1000,
+      keys: ["card_name.name", "card_name.name_ruby"],
     });
+    cards = fuse.search(filter.searchText).map((x) => x.item);
   }
 
   const totalCount = cards.length;
