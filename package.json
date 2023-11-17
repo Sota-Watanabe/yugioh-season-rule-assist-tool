@@ -32,5 +32,6 @@
     "eslint-config-next": "13.5.6",
     "serve": "^14.2.1",
     "typescript": "^5"
-  }
+  },
+  "homepage": "https://yugioh-db.takoyama.net"
 }
