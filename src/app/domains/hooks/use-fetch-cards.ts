@@ -15,6 +15,7 @@ export const defaultValues = {
   card: [] as string[],
   level: [] as string[],
   useful: false,
+  perPage: PERPAGE,
 };
 
 export const useFetchCards = (values: Partial<typeof defaultValues>) => {
@@ -66,7 +67,8 @@ export const useFetchCards = (values: Partial<typeof defaultValues>) => {
 
   const totalCount = cards.length;
   // NOTE: ページング
-  cards = cards.slice(PERPAGE * (page - 1), PERPAGE * page);
+  if (filter.perPage)
+    cards = cards.slice(filter.perPage * (page - 1), filter.perPage * page);
 
   return {
     fetchCards: { cards, totalCount: totalCount },
