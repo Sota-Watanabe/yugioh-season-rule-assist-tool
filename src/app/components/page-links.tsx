@@ -1,6 +1,6 @@
 "use client";
 import { css } from "@emotion/react";
-import { Button } from "@mui/material";
+import { Button, Link } from "@mui/material";
 
 const main = css`
   margin: auto;
@@ -22,10 +22,18 @@ const pageLinkButton = css`
 export const PageLinks = () => {
   return (
     <div css={main}>
-      <Button css={pageLinkButton}>カードリスト</Button>
-      <Button css={pageLinkButton}>汎用カード</Button>
-      <Button css={pageLinkButton}>制限リスト</Button>
-      <Button css={pageLinkButton}>ランダムパック</Button>
+      <Link href="card-list">
+        <Button css={pageLinkButton}>カードリスト</Button>
+      </Link>
+      <Link href="useful-card">
+        <Button css={pageLinkButton}>汎用カード</Button>
+      </Link>
+      <Link href="limit-regulation">
+        <Button css={pageLinkButton}>制限リスト</Button>
+      </Link>
+      <Link href="random-pack">
+        <Button css={pageLinkButton}>ランダムパック</Button>
+      </Link>
     </div>
   );
 };

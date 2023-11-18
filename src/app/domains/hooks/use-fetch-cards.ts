@@ -14,10 +14,11 @@ export const defaultValues = {
   monster: [] as string[],
   card: [] as string[],
   level: [] as string[],
+  useful: false,
 };
 
-export const useFetchCards = (values: typeof defaultValues) => {
-  const [filter, setFilter] = useState(values);
+export const useFetchCards = (values: Partial<typeof defaultValues>) => {
+  const [filter, setFilter] = useState({ ...defaultValues, ...values });
   const [page, setPage] = useState(1);
   // NOTE: cid順に並び替え
   let cards = database.cards.sort((a, b) =>
@@ -60,6 +61,8 @@ export const useFetchCards = (values: typeof defaultValues) => {
     });
     cards = fuse.search(filter.searchText).map((x) => x.item);
   }
+
+  if (filter.useful) cards = cards.filter((card) => !!card.useful);
 
   const totalCount = cards.length;
   // NOTE: ページング
