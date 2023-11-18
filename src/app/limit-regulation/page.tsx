@@ -2,8 +2,8 @@
 import { css } from "@emotion/react";
 import { Header } from "@/app/components/header";
 import { PageLinks } from "@/app/components/page-links";
-import { useFetchCards } from "@/app/domains/hooks/use-fetch-cards";
-import { SeasonalUsefulCard } from "@/app/components/seasonal-useful-card";
+import { LimitRegulationAccordion } from "../components/limit-regulation-accordion";
+import { limitRegulationList } from "@/app/domains/models/limit-regulation-list";
 
 const top = css`
   background: #084371;
@@ -11,20 +11,17 @@ const top = css`
 
 const main = css`
   width: 968px;
-  padding: 20px 0;
-  margin: auto;
-  a {
-    display: block;
+  margin: 45px auto;
+  button {
     color: #1a0dab;
     font-family: Dela Gothic One;
     font-size: 36px;
     text-decoration-line: underline;
+    cursor: pointer;
   }
 `;
 
 export default function CardListPage() {
-  const { fetchCards } = useFetchCards({ useful: true });
-
   return (
     <>
       <Header />
@@ -32,11 +29,12 @@ export default function CardListPage() {
         <PageLinks />
       </div>
       <div css={main}>
-        <a href="aa">1期の制限リスト</a>
-        <a href="aa">2期の制限リスト</a>
-        <a href="aa">3期の制限リスト</a>
-        <a href="aa">4期の制限リスト</a>
-        <a href="aa">5期の制限リスト</a>
+        {limitRegulationList.map((limitRegulation) => (
+          <LimitRegulationAccordion
+            value={limitRegulation}
+            key={limitRegulation.name}
+          />
+        ))}
       </div>
     </>
   );
