@@ -22,6 +22,9 @@ const main = css`
 
   .card-pack-list {
     display: flex;
+    img {
+      cursor: pointer;
+    }
   }
 `;
 

@@ -11,6 +11,9 @@ const main = css`
     justify-content: center;
     padding: 35px;
     background: #e5e4e4;
+    img {
+      cursor: pointer;
+    }
   }
   .selected-card-container {
     margin: 30px 0;
