@@ -16,7 +16,7 @@ const main = css`
 `;
 
 export default function CardListPage() {
-  const { fetchCards } = useFetchCards({ useful: true, perPage: undefined });
+  const { fetchCards } = useFetchCards({ useful: true, limit: undefined });
 
   return (
     <>

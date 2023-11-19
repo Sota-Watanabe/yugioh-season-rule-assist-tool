@@ -4,7 +4,6 @@ import database from "@/../../public/database.json";
 import Fuse from "fuse.js";
 
 export const PERPAGE = 10;
-
 export const defaultValues = {
   searchText: "",
   season: [] as string[],
@@ -15,21 +14,39 @@ export const defaultValues = {
   card: [] as string[],
   level: [] as string[],
   useful: false,
-  perPage: PERPAGE,
+  limit: PERPAGE,
+  isShuffle: false,
 };
 
-export const useFetchCards = (values: Partial<typeof defaultValues>) => {
+// ref: https://gray-code.com/javascript/shuffle-for-item-of-array/
+const arrayShuffle = (cards: CardType[]) => {
+  for (let i = cards.length - 1; 0 < i; i--) {
+    // 0〜(i+1)の範囲で値を取得
+    let r = Math.floor(Math.random() * (i + 1));
+
+    // 要素の並び替えを実行
+    let tmp = cards[i];
+    cards[i] = cards[r];
+    cards[r] = tmp;
+  }
+  return cards;
+};
+
+export const useFetchCards = (values?: Partial<typeof defaultValues>) => {
   const [filter, setFilter] = useState({ ...defaultValues, ...values });
+  console.log("filter=", filter);
   const [page, setPage] = useState(1);
   // NOTE: cid順に並び替え
   let cards = database.cards.sort((a, b) =>
     a.cid > b.cid ? 1 : -1
   ) as CardType[];
 
+  // 検索フィルター↓
   if (filter.season.length)
     cards = cards.filter((card) =>
       filter.season.includes(String(card.card_release.season))
     );
+  console.log("season", cards[0].card_release.season);
   if (filter.zeroFour.length && filter.zeroFour[0] === "1")
     cards = cards.filter((card) => card.card_release.zero_four === true);
   if (filter.attribute.length)
@@ -62,13 +79,16 @@ export const useFetchCards = (values: Partial<typeof defaultValues>) => {
     });
     cards = fuse.search(filter.searchText).map((x) => x.item);
   }
+  // 検索フィルター↑
 
   if (filter.useful) cards = cards.filter((card) => !!card.useful);
 
+  if (filter.isShuffle) arrayShuffle(cards);
+
   const totalCount = cards.length;
-  // NOTE: ページング
-  if (filter.perPage)
-    cards = cards.slice(filter.perPage * (page - 1), filter.perPage * page);
+
+  if (filter.limit)
+    cards = cards.slice(filter.limit * (page - 1), filter.limit * page);
 
   return {
     fetchCards: { cards, totalCount: totalCount },
@@ -78,6 +98,9 @@ export const useFetchCards = (values: Partial<typeof defaultValues>) => {
       window.scrollTo({
         top: 0,
       });
+    },
+    updateCardFilterWithDiff: (diff: Partial<typeof defaultValues>) => {
+      setFilter({ ...filter, ...diff });
     },
     totalCount,
     page,
