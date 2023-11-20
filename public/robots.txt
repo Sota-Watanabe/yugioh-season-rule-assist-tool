@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://yugioh-db.takoyama.net/
-
-# Sitemaps
-Sitemap: https://yugioh-db.takoyama.net/sitemap.xml
