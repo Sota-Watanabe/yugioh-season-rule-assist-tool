@@ -97,9 +97,13 @@ export const Card: React.FC<Props> = ({ value }) => {
             {value.card_properties.attribute}属性
             <div className="vertical-line" />
             レベル{value.card_properties.level}
-            <div className="vertical-line" />【
+            <div className="vertical-line" />
             <p className="card-type">
-              {value.card_properties.card_type.join(" / ")}】
+              【
+              {[value.card_properties.monster_type]
+                .concat(value.card_properties.card_type)
+                .join(" / ")}
+              】
             </p>
             攻撃力 {value.status.atk}
             <div className="vertical-line" /> 守備力 {value.status.def}
