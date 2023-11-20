@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "ress";
-import { css } from "@emotion/react";
+import Script from "next/script";
+import React from "react";
 
 const notoSansJp = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -18,6 +19,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-ZBG4R8Z1GY"
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZBG4R8Z1GY');
+  `,
+        }}
+      />
       <body style={{ minWidth: "1024px" }} className={notoSansJp.className}>
         {children}
       </body>
