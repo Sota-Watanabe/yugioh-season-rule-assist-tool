@@ -31,12 +31,11 @@ const header = css`
   height: 44px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background: #477490;
   color: #fff;
   cursor: pointer;
   .text {
-    width: 900px;
     color: #fff;
     text-align: center;
     font-size: 20px;
