@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 import { CardType } from "@/app/domains/models/card-type";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const main = css`
   margin-bottom: 50px;
@@ -57,12 +59,14 @@ export const SeasonalUsefulCard: React.FC<Props> = ({ season, cards }) => {
         {cards.map((card) => {
           return (
             <div key={card.cid} className="card-container">
-              <img
-                src={card.image_url}
-                alt="card_url"
-                width={113}
-                height={164}
-              />
+              <Link href={card.card_url.ocg_url} target="_blank">
+                <img
+                  src={card.image_url}
+                  alt="card_url"
+                  width={113}
+                  height={164}
+                />
+              </Link>
               <a href={card.card_url.ocg_url} target="_blank">
                 {card.card_name.name}
               </a>

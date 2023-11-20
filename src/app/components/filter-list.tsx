@@ -30,7 +30,7 @@ const main = css`
 const container = css`
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
   > div {
     display: flex;
     gap: 3px;
