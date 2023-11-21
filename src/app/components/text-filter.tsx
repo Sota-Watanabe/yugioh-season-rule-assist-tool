@@ -29,7 +29,7 @@ export const TextFilter = () => {
   const { register } = useFormContext();
   return (
     <div css={main}>
-      <input type="text" {...register("searchText")} />
+      <input type="text" {...register("searchText")} placeholder="カード名、カードテキスト" />
       <div className="submit">
         <button type="submit">検索</button>
       </div>
