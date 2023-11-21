@@ -75,7 +75,7 @@ export const useFetchCards = (values?: Partial<typeof defaultValues>) => {
     const fuse = new Fuse(cards, {
       threshold: 0.2,
       distance: 1000,
-      keys: ["card_name.name", "card_name.name_ruby"],
+      keys: ["card_name.name", "card_name.name_ruby", "text"],
     });
     cards = fuse.search(filter.searchText).map((x) => x.item);
   }
