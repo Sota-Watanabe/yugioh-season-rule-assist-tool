@@ -22,6 +22,12 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     type: "website",
   },
+  twitter: {
+    title: "遊戯王-5期までDB",
+    description:
+      "遊戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
