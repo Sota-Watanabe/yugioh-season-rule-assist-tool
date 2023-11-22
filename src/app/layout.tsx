@@ -9,8 +9,18 @@ const notoSansJp = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "遊戯王-5期までDB",
-  description: "戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
+  description:
+    "戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
   viewport: "width=1100",
+  openGraph: {
+    title: "遊戯王-5期までDB",
+    description:
+      "遊戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
+    url: "https://yugioh-db.takoyama.net/",
+    siteName: "遊戯王-5期までDB",
+    locale: "ja_JP",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
