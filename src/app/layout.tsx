@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     siteName: "遊戯王-5期までDB",
     locale: "ja_JP",
     type: "website",
+    images: "https://yugioh-db.takoyama.net/opengraph-image.png",
   },
   twitter: {
     title: "遊戯王-5期までDB",
