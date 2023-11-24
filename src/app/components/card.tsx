@@ -105,8 +105,9 @@ export const Card: React.FC<Props> = ({ value }) => {
                 .join(" / ")}
               】
             </p>
-            攻撃力 {value.status.atk}
-            <div className="vertical-line" /> 守備力 {value.status.def}
+            攻撃力 {value.status.atk === -1 ? "?" : value.status.atk}
+            <div className="vertical-line" /> 守備力{" "}
+            {value.status.def === -1 ? "?" : value.status.def}
           </div>
         )}
         {isMonsterCard || (
