@@ -27,10 +27,19 @@ const main = css`
   width: 968px;
   padding: 20px 0;
   margin: auto;
+  .search-header {
+    height: 51px;
+    display: flex;
+    gap: 24px;
+    justify-content: normal;
+    .text-filter {
+      flex: 1;
+    }
+  }
 `;
 
-const header = css`
-  height: 44px;
+const filterBtn = css`
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,9 +54,6 @@ const header = css`
     font-weight: 400;
     line-height: normal;
   }
-  .icon {
-    margin-right: 20px;
-  }
 `;
 
 const pagination = css`
@@ -55,19 +61,26 @@ const pagination = css`
   display: flex;
   justify-content: center;
 `;
-
 export default function CardListPage() {
-  console.log("start CardListPage");
   const useFormMethods = useForm({
     defaultValues,
   });
-  const { getValues, handleSubmit } = useFormMethods;
+  const { getValues, handleSubmit, resetField } = useFormMethods;
   const { fetchCards, updateCardFilter, totalCount, page, updatePage } =
     useFetchCards(getValues());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onSubmit = () => {
     updateCardFilter(getValues());
     setIsOpen(false); // TODO: 閉じるか迷い中
+  };
+  const onClear = () => {
+    // NOTE: フィルタリング要素のみリセット（もっといい方法ありそう）
+    const keys = Object.keys(defaultValues);
+    const excludeKeys = ["sort", "searchText", "useful", "limit", "isShuffle"];
+    const targetKeys = keys.filter((key) => !excludeKeys.includes(key));
+    targetKeys.forEach((key) => {
+      resetField(key as keyof typeof defaultValues);
+    });
   };
 
   const isEmpty = fetchCards.totalCount === 0;
@@ -80,17 +93,21 @@ export default function CardListPage() {
       <div css={main}>
         <FormProvider {...useFormMethods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <TextFilter />
-            <div css={header} onClick={() => setIsOpen(!isOpen)}>
-              <p className="text">カードフィルター</p>
-              {isOpen && (
-                <KeyboardArrowUpIcon fontSize="large" className="icon" />
-              )}
-              {isOpen || (
-                <KeyboardArrowDownIcon fontSize="large" className="icon" />
-              )}
+            <div className="search-header">
+              <div className="text-filter">
+                <TextFilter />
+              </div>
+              <div css={filterBtn} onClick={() => setIsOpen(!isOpen)}>
+                <p className="text">フィルタリング</p>
+                {isOpen && (
+                  <KeyboardArrowUpIcon fontSize="large" className="icon" />
+                )}
+                {isOpen || (
+                  <KeyboardArrowDownIcon fontSize="large" className="icon" />
+                )}
+              </div>
             </div>
-            {isOpen && <FilterList />}
+            {isOpen && <FilterList onClear={onClear} />}
             {isEmpty && <Empty />}
             {isEmpty || (
               <>

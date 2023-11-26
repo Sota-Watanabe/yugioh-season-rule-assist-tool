@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const main = css`
   display: flex;
-  margin: 13px 0;
+  margin: 13px 20px;
   justify-content: space-between;
   align-items: center;
   .search-result {
@@ -16,11 +16,11 @@ const main = css`
   }
   .sort-wrap {
     display: inline;
-    position: relative;
     width: 175px;
-    font-size: 20px;
-    background: #efefef;
     padding: 3px 8px;
+    position: relative;
+    font-size: 18px;
+    background: #efefef;
   }
   .sort-wrap::after {
     content: "";
@@ -47,7 +47,7 @@ export const ResultCardsHeader: React.FC<Props> = ({
   totalCount,
   onSubmit,
 }) => {
-  const { register, watch, getValues } = useFormContext();
+  const { register, watch } = useFormContext();
 
   useEffect(() => {
     onSubmit();

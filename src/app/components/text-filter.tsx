@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { useFormContext } from "react-hook-form";
 
 const main = css`
+  height: 100%;
   display: flex;
   padding: 10px 40px;
   gap: 0 21px;
@@ -29,7 +30,11 @@ export const TextFilter = () => {
   const { register } = useFormContext();
   return (
     <div css={main}>
-      <input type="text" {...register("searchText")} placeholder="カード名、カードテキスト" />
+      <input
+        type="text"
+        {...register("searchText")}
+        placeholder="カード名、カードテキスト"
+      />
       <div className="submit">
         <button type="submit">検索</button>
       </div>

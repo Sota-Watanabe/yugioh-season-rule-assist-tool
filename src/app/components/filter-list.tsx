@@ -1,6 +1,5 @@
 "use client";
 import { css } from "@emotion/react";
-import { useFormContext } from "react-hook-form";
 import { SearchValueBlocks } from "@/app/components/search-value-blocks";
 import {
   searchAttributeOptions,
@@ -16,13 +15,21 @@ const main = css`
   padding: 12px 20px;
   .submit {
     display: flex;
-    margin: 10px;
+    margin: 10px 0;
+    width: 901px;
     justify-content: center;
-    button {
-      width: 80px;
-      height: 32px;
-      background: #ffba00;
-      font-size: 20px;
+    .search-container {
+      flex: 1;
+      text-align: center;
+      button {
+        width: 80px;
+        height: 32px;
+        background: #ffba00;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+    img {
       cursor: pointer;
     }
   }
@@ -48,7 +55,11 @@ const blockStyle = css`
   line-height: 100%;
   background: #012c53;
 `;
-export const FilterList = () => {
+
+type Props = {
+  onClear: () => void;
+};
+export const FilterList: React.FC<Props> = ({ onClear }) => {
   return (
     <div css={main}>
       <div css={container}>
@@ -104,7 +115,10 @@ export const FilterList = () => {
         </div>
       </div>
       <div className="submit">
-        <button type="submit">検索</button>
+        <div className="search-container">
+          <button type="submit">検索</button>
+        </div>
+        <img src={`/card-list/reset.png`} alt="resetBtn" onClick={onClear} />
       </div>
     </div>
   );
