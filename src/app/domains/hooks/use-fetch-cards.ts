@@ -18,7 +18,7 @@ export const defaultValues = {
   useful: false,
   limit: PERPAGE,
   isShuffle: false,
-} as const;
+};
 
 // ref: https://gray-code.com/javascript/shuffle-for-item-of-array/
 const arrayShuffle = (cards: CardType[]) => {
