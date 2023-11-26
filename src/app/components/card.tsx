@@ -4,7 +4,6 @@ import { CardType } from "@/app/domains/models/card-type";
 const main = css`
   display: flex;
   min-height: 204px;
-  /* background: red; */
   .img-container {
     display: flex;
     align-items: center;

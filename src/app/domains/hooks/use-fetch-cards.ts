@@ -2,9 +2,11 @@ import { useState } from "react";
 import { CardType } from "@/app/domains/models/card-type";
 import database from "@/../../public/database.json";
 import Fuse from "fuse.js";
+import { sortOptions } from "@/app/domains/models/search-params";
 
 export const PERPAGE = 10;
 export const defaultValues = {
+  sort: "cid" as (typeof sortOptions)[number]["key"],
   searchText: "",
   season: [] as string[],
   zeroFour: [] as string[],
@@ -34,19 +36,14 @@ const arrayShuffle = (cards: CardType[]) => {
 
 export const useFetchCards = (values?: Partial<typeof defaultValues>) => {
   const [filter, setFilter] = useState({ ...defaultValues, ...values });
-  console.log("filter=", filter);
   const [page, setPage] = useState(1);
-  // NOTE: cid順に並び替え
-  let cards = database.cards.sort((a, b) =>
-    a.cid > b.cid ? 1 : -1
-  ) as CardType[];
 
+  let cards = database.cards as CardType[];
   // 検索フィルター↓
   if (filter.season.length)
     cards = cards.filter((card) =>
       filter.season.includes(String(card.card_release.season))
     );
-  console.log("season", cards[0].card_release.season);
   if (filter.zeroFour.length && filter.zeroFour[0] === "1")
     cards = cards.filter((card) => card.card_release.zero_four === true);
   if (filter.attribute.length)
@@ -83,7 +80,21 @@ export const useFetchCards = (values?: Partial<typeof defaultValues>) => {
 
   if (filter.useful) cards = cards.filter((card) => !!card.useful);
 
-  if (filter.isShuffle) arrayShuffle(cards);
+  if (filter.isShuffle) {
+    arrayShuffle(cards);
+  } else {
+    // 並び替え設定（cid順、攻撃力降順、守備力降順）
+    cards = cards.sort((a, b) => {
+      switch (filter.sort) {
+        case "cid":
+          return a.cid > b.cid ? 1 : -1;
+        case "atk":
+          return a.status.atk < b.status.atk ? 1 : -1;
+        case "def":
+          return a.status.def < b.status.def ? 1 : -1;
+      }
+    }) as CardType[];
+  }
 
   const totalCount = cards.length;
 

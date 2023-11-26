@@ -11,11 +11,13 @@ import { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { FilterList } from "@/app/components/filter-list";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { CardList } from "@/app/components/card-list";
 import { Pagination } from "@mui/material";
 import { Empty } from "@/app/components/empty";
 import { TextFilter } from "@/app/components/text-filter";
+import { sortOptions } from "../domains/models/search-params";
+import { ResultCardsHeader } from "../components/result-cards-header";
 
 const top = css`
   background: #084371;
@@ -54,14 +56,8 @@ const pagination = css`
   justify-content: center;
 `;
 
-const searchResult = css`
-  font-size: 18px;
-  span {
-    font-size: 22px;
-  }
-`;
-
 export default function CardListPage() {
+  console.log("start CardListPage");
   const useFormMethods = useForm({
     defaultValues,
   });
@@ -71,11 +67,10 @@ export default function CardListPage() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onSubmit = () => {
     updateCardFilter(getValues());
-    // setIsOpen(false) // TODO: 閉じるか迷い中
+    setIsOpen(false); // TODO: 閉じるか迷い中
   };
 
   const isEmpty = fetchCards.totalCount === 0;
-
   return (
     <>
       <Header />
@@ -99,9 +94,10 @@ export default function CardListPage() {
             {isEmpty && <Empty />}
             {isEmpty || (
               <>
-                <p css={searchResult}>
-                  検索結果: <span>{totalCount} </span>件
-                </p>
+                <ResultCardsHeader
+                  totalCount={totalCount}
+                  onSubmit={onSubmit}
+                />
                 <CardList values={fetchCards.cards} />
                 <div css={pagination}>
                   <Pagination

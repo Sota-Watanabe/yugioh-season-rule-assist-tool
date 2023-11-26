@@ -100,3 +100,9 @@ export const searchLevelOptions = [
   { key: "11", label: "11" },
   { key: "12", label: "12" },
 ];
+
+export const sortOptions = [
+  { key: "cid", label: "期数順" },
+  { key: "atk", label: "攻撃力高い順" },
+  { key: "def", label: "守備力高い順" },
+] as const;
