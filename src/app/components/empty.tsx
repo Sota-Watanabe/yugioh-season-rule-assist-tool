@@ -1,6 +1,9 @@
 import { css } from "@emotion/react";
+import { useFetchGoogleSearch } from "../domains/hooks/use-fetch-google-search";
+import { MaybeCard } from "./maybe-card";
+import { useEffect } from "react";
 
-const main = css`
+const noResult = css`
   display: flex;
   padding: 20px;
   gap: 9px;
@@ -18,19 +21,39 @@ const main = css`
   }
 `;
 
-export const Empty = () => {
+type Props = { searchText: string };
+
+export const Empty = (props: Props) => {
+  const { googleSearchResult, setQuery } = useFetchGoogleSearch(
+    props.searchText
+  );
+  useEffect(() => {
+    setQuery(props.searchText);
+  }, [props.searchText, setQuery]);
+
   return (
-    <div css={main}>
-      <img
-        src="https://ocg-card.com/img/card/ocg/stbl-076.jpg"
-        alt="card_url"
-        width={113}
-        height={164}
-      />
-      <div>
-        <p>該当データがありません</p>
-        <div className="horizontal-line" />
+    <>
+      <div css={noResult}>
+        <img
+          src="https://ocg-card.com/img/card/ocg/stbl-076.jpg"
+          alt="card_url"
+          width={113}
+          height={164}
+        />
+        <div>
+          <p>該当データがありません</p>
+          <div className="horizontal-line" />
+        </div>
       </div>
-    </div>
+      {googleSearchResult && (
+        <>
+          {googleSearchResult.map((item, index) => (
+            <div key={index}>
+              <MaybeCard value={item} index={index} />
+            </div>
+          ))}
+        </>
+      )}
+    </>
   );
 };

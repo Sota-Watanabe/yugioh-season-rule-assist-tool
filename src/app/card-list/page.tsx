@@ -108,7 +108,7 @@ export default function CardListPage() {
               </div>
             </div>
             {isOpen && <FilterList onClear={onClear} />}
-            {isEmpty && <Empty />}
+            {isEmpty && <Empty searchText={getValues().searchText} />}
             {isEmpty || (
               <>
                 <ResultCardsHeader

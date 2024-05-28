@@ -4,6 +4,7 @@ import "./globals.css";
 import "ress";
 import Script from "next/script";
 import React from "react";
+import { Providers } from "@/providers";
 
 const notoSansJp = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -56,7 +57,7 @@ export default function RootLayout({
         }}
       />
       <body style={{ minWidth: "1024px" }} className={notoSansJp.className}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
