@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { GoogleSearchItem } from "../models/google-search-response";
 
-const APIKEY = "AIzaSyDM8IT2b6fbOMyNUBznV-5kxNRO9--EpT0";
-const SEARCHENGINEID = "c3ed5a155d8f8450f";
-
 const count = "3";
 const language = "lang_ja";
 
 const fetchResult = async (query: string) => {
-  const url = `https://www.googleapis.com/customsearch/v1?key=${APIKEY}&cx=${SEARCHENGINEID}&q=${
+  const url = `https://www.googleapis.com/customsearch/v1?key=${
+    process.env.NEXT_PUBLIC_APIKEY
+  }&cx=${process.env.NEXT_PUBLIC_SEARCHENGINEID}&q=${
     query + " site:https://www.db.yugioh-card.com/yugiohdb/card_search.action"
   }&num=${count}&lr=${language}`;
   const response = await fetch(url);

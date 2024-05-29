@@ -29,7 +29,7 @@ export const Empty = (props: Props) => {
   );
   useEffect(() => {
     setQuery(props.searchText);
-  }, [props.searchText, setQuery]);
+  }, [props.searchText]);
 
   return (
     <>
