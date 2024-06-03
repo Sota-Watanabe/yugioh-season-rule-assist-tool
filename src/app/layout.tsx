@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yugioh-db.takoyama.net/"),
   title: "遊戯王-5期までDB",
   description:
-    "戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
+    "遊戯王5期までのカードを集めたデータベースです。5期縛りにはもちろん、4期までの4期縛り、2004年カードまでの04環境でのデュエルでも活用することができます。",
   viewport: "width=1100",
   openGraph: {
     title: "遊戯王-5期までDB",
     description:
-      "遊戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
+      "遊遊戯王5期までのカードを集めたデータベースです。5期縛りにはもちろん、4期までの4期縛り、2004年カードまでの04環境でのデュエルでも活用することができます。",
     url: "https://yugioh-db.takoyama.net/",
     siteName: "遊戯王-5期までDB",
     locale: "ja_JP",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "遊戯王-5期までDB",
     description:
-      "遊戯王5期までのカードを集めたデータベースです。4期縛り、5期縛り、04環境でのデュエルで活用することができます。",
+      "遊遊戯王5期までのカードを集めたデータベースです。5期縛りにはもちろん、4期までの4期縛り、2004年カードまでの04環境でのデュエルでも活用することができます。",
     card: "summary_large_image",
   },
 };
