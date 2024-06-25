@@ -18,6 +18,7 @@ import { Empty } from "@/app/components/empty";
 import { TextFilter } from "@/app/components/text-filter";
 import { sortOptions } from "../domains/models/search-params";
 import { ResultCardsHeader } from "../components/result-cards-header";
+import { GoogleAd } from "../components/googlead";
 
 const top = css`
   background: #084371;
@@ -90,6 +91,7 @@ export default function CardListPage() {
       <div css={top}>
         <PageLinks />
       </div>
+      <GoogleAd slot="6768688677"/>
       <div css={main}>
         <FormProvider {...useFormMethods}>
           <form onSubmit={handleSubmit(onSubmit)}>
