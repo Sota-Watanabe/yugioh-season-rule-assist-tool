@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { css } from "@mui/material";
 
 const PUBLISHER_ID = "4787767601026636";
 
@@ -36,7 +37,13 @@ export const GoogleAd = ({
   }, [pathname]);
 
   return (
-    <div key={pathname.replace(/\//g, "-") + "-" + slot}>
+    <div
+      css={css`
+        background: red;
+        flex: 1;
+      `}
+      key={pathname.replace(/\//g, "-") + "-" + slot}
+    >
       <ins
         className="adsbygoogle"
         style={{ display: "block", width: "100%", ...style }}

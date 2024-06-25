@@ -91,45 +91,62 @@ export default function CardListPage() {
       <div css={top}>
         <PageLinks />
       </div>
-      <GoogleAd slot="6768688677"/>
-      <div css={main}>
-        <FormProvider {...useFormMethods}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="search-header">
-              <div className="text-filter">
-                <TextFilter />
-              </div>
-              <div css={filterBtn} onClick={() => setIsOpen(!isOpen)}>
-                <p className="text">フィルタリング</p>
-                {isOpen && (
-                  <KeyboardArrowUpIcon fontSize="large" className="icon" />
-                )}
-                {isOpen || (
-                  <KeyboardArrowDownIcon fontSize="large" className="icon" />
-                )}
-              </div>
-            </div>
-            {isOpen && <FilterList onClear={onClear} />}
-            {isEmpty && <Empty searchText={getValues().searchText} />}
-            {isEmpty || (
-              <>
-                <ResultCardsHeader
-                  totalCount={totalCount}
-                  onSubmit={onSubmit}
-                />
-                <CardList values={fetchCards.cards} />
-                <div css={pagination}>
-                  <Pagination
-                    count={Math.ceil(totalCount / PERPAGE)} //総ページ数
-                    color="primary"
-                    onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
-                    page={page}
-                  />
+      <div
+        css={css`
+          display: flex;
+        `}
+      >
+        <GoogleAd
+          slot="6768688677"
+          css={css`
+            flex: 1;
+          `}
+        />
+        <div css={main}>
+          <FormProvider {...useFormMethods}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="search-header">
+                <div className="text-filter">
+                  <TextFilter />
                 </div>
-              </>
-            )}
-          </form>
-        </FormProvider>
+                <div css={filterBtn} onClick={() => setIsOpen(!isOpen)}>
+                  <p className="text">フィルタリング</p>
+                  {isOpen && (
+                    <KeyboardArrowUpIcon fontSize="large" className="icon" />
+                  )}
+                  {isOpen || (
+                    <KeyboardArrowDownIcon fontSize="large" className="icon" />
+                  )}
+                </div>
+              </div>
+              {isOpen && <FilterList onClear={onClear} />}
+              {isEmpty && <Empty searchText={getValues().searchText} />}
+              {isEmpty || (
+                <>
+                  <ResultCardsHeader
+                    totalCount={totalCount}
+                    onSubmit={onSubmit}
+                  />
+                  <CardList values={fetchCards.cards} />
+                  <div css={pagination}>
+                    <Pagination
+                      count={Math.ceil(totalCount / PERPAGE)} //総ページ数
+                      color="primary"
+                      onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
+                      page={page}
+                    />
+                  </div>
+                </>
+              )}
+            </form>
+          </FormProvider>
+        </div>
+        <GoogleAd
+          slot="6768688677"
+          css={css`
+            flex: 1;
+          `}
+        />
       </div>
     </>
   );
