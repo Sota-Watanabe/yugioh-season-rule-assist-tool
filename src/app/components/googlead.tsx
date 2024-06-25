@@ -39,7 +39,6 @@ export const GoogleAd = ({
   return (
     <div
       css={css`
-        background: red;
         flex: 1;
       `}
       key={pathname.replace(/\//g, "-") + "-" + slot}
