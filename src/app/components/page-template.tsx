@@ -15,7 +15,8 @@ const main = css`
   justify-content: center;
 `;
 
-const mt120 = css`
+const GoogleAdContainer = css`
+  flex: 1;
   margin-top: 120px;
 `;
 
@@ -33,11 +34,11 @@ export const PageTemplate: React.FC<Props> = ({ children }) => {
       </div>
       {isMobile && <GoogleAd />}
       <div css={main}>
-        <div css={mt120}>
+        <div css={GoogleAdContainer}>
           <GoogleAd />
         </div>
         <div css={childrenStyle}>{children}</div>
-        <div css={mt120}>
+        <div css={GoogleAdContainer}>
           <GoogleAd />
         </div>
       </div>
