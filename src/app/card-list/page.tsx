@@ -97,7 +97,6 @@ export default function CardListPage() {
         `}
       >
         <GoogleAd
-          slot="6768688677"
           css={css`
             flex: 1;
           `}
@@ -142,7 +141,6 @@ export default function CardListPage() {
           </FormProvider>
         </div>
         <GoogleAd
-          slot="6768688677"
           css={css`
             flex: 1;
           `}
