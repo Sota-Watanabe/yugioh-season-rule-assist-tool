@@ -1,4 +1,3 @@
-import { useMeasure } from "react-use";
 import { GoogleAd } from "./googlead";
 import { Header } from "./header";
 import { PageLinks } from "./page-links";
