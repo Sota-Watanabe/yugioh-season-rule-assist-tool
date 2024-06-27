@@ -1,3 +1,4 @@
+import { useMeasure } from "react-use";
 import { GoogleAd } from "./googlead";
 import { Header } from "./header";
 import { PageLinks } from "./page-links";
@@ -12,27 +13,27 @@ const main = css`
   display: flex;
   gap: 16px;
 `;
+
+const mt120 = css`
+  margin-top: 120px;
+`;
 export const PageTemplate: React.FC<Props> = ({ children }) => {
+  const [ref, { width }] = useMeasure<HTMLDivElement>();
   return (
     <>
       <Header />
       <div css={top}>
         <PageLinks />
       </div>
+      {width === 0 && <GoogleAd />}
       <div css={main}>
-        <GoogleAd
-          css={css`
-            flex: 1;
-            margin-top: 120px;
-          `}
-        />
+        <div css={mt120} ref={ref}>
+          <GoogleAd />
+        </div>
         {children}
-        <GoogleAd
-          css={css`
-            flex: 1;
-            margin-top: 120px;
-          `}
-        />
+        <div css={mt120}>
+          <GoogleAd />
+        </div>
       </div>
     </>
   );
