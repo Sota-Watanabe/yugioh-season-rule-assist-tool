@@ -26,7 +26,6 @@ const top = css`
 `;
 
 const main = css`
-  width: 968px;
   padding: 20px 0;
   margin: auto;
   .search-header {

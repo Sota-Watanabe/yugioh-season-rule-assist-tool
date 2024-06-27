@@ -12,10 +12,15 @@ const top = css`
 const main = css`
   display: flex;
   gap: 16px;
+  justify-content: center;
 `;
 
 const mt120 = css`
   margin-top: 120px;
+`;
+
+const childrenStyle = css`
+  width: 968px;
 `;
 
 export const PageTemplate: React.FC<Props> = ({ children }) => {
@@ -31,7 +36,7 @@ export const PageTemplate: React.FC<Props> = ({ children }) => {
         <div css={mt120}>
           <GoogleAd />
         </div>
-        {children}
+        <div css={childrenStyle}>{children}</div>
         <div css={mt120}>
           <GoogleAd />
         </div>
