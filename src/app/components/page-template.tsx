@@ -2,6 +2,7 @@ import { GoogleAd } from "./googlead";
 import { Header } from "./header";
 import { PageLinks } from "./page-links";
 import { css } from "@emotion/react";
+import { isMobile } from "react-device-detect";
 
 type Props = {} & React.PropsWithChildren;
 const top = css`
@@ -18,22 +19,21 @@ const mt120 = css`
 `;
 
 export const PageTemplate: React.FC<Props> = ({ children }) => {
-  const isSP = navigator.userAgent.match(/iPhone|Android.+Mobile/);
   return (
     <>
       <Header />
       <div css={top}>
         <PageLinks />
       </div>
-      {isSP && <GoogleAd />}
+      {isMobile && <GoogleAd />}
       <div css={main}>
-        {!isSP && (
+        {!isMobile && (
           <div css={mt120}>
             <GoogleAd />
           </div>
         )}
         {children}
-        {!isSP && (
+        {!isMobile && (
           <div css={mt120}>
             <GoogleAd />
           </div>
