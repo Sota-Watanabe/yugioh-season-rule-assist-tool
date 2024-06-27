@@ -19,6 +19,7 @@ const mt120 = css`
 `;
 
 export const PageTemplate: React.FC<Props> = ({ children }) => {
+  console.log("isMobile", isMobile);
   return (
     <>
       <Header />
@@ -27,17 +28,13 @@ export const PageTemplate: React.FC<Props> = ({ children }) => {
       </div>
       {isMobile && <GoogleAd />}
       <div css={main}>
-        {!isMobile && (
-          <div css={mt120}>
-            <GoogleAd />
-          </div>
-        )}
+        <div css={mt120}>
+          <GoogleAd />
+        </div>
         {children}
-        {!isMobile && (
-          <div css={mt120}>
-            <GoogleAd />
-          </div>
-        )}
+        <div css={mt120}>
+          <GoogleAd />
+        </div>
       </div>
     </>
   );
