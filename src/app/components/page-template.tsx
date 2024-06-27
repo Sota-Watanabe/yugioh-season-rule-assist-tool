@@ -17,23 +17,28 @@ const main = css`
 const mt120 = css`
   margin-top: 120px;
 `;
+
 export const PageTemplate: React.FC<Props> = ({ children }) => {
-  const [ref, { width }] = useMeasure<HTMLDivElement>();
+  const isSP = navigator.userAgent.match(/iPhone|Android.+Mobile/);
   return (
     <>
       <Header />
       <div css={top}>
         <PageLinks />
       </div>
-      {width === 0 && <GoogleAd />}
+      {isSP && <GoogleAd />}
       <div css={main}>
-        <div css={mt120} ref={ref}>
-          <GoogleAd />
-        </div>
+        {!isSP && (
+          <div css={mt120}>
+            <GoogleAd />
+          </div>
+        )}
         {children}
-        <div css={mt120}>
-          <GoogleAd />
-        </div>
+        {!isSP && (
+          <div css={mt120}>
+            <GoogleAd />
+          </div>
+        )}
       </div>
     </>
   );
