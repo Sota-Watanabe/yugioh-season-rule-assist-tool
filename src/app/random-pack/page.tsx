@@ -5,6 +5,7 @@ import { PageLinks } from "@/app/components/page-links";
 import { useFetchCards } from "@/app/domains/hooks/use-fetch-cards";
 import { useEffect, useState } from "react";
 import { DisplayRandomCard } from "../components/display-random-card";
+import { PageTemplate } from "../components/page-template";
 
 const top = css`
   background: #084371;
@@ -85,15 +86,11 @@ export default function RandomPackPage() {
   };
 
   return (
-    <>
-      <Header />
-      <div css={top}>
-        <PageLinks />
-      </div>
+    <PageTemplate>
       <div css={main}>
         <RandomPack updateCardPack={updateCardPack} />
         {selectedPack?.packId && <DisplayRandomCard cards={fetchCards.cards} />}
       </div>
-    </>
+    </PageTemplate>
   );
 }

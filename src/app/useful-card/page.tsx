@@ -20,41 +20,39 @@ export default function CardListPage() {
   const { fetchCards } = useFetchCards({ useful: true, limit: undefined });
 
   return (
-    <>
-      <PageTemplate>
-        <div css={main}>
-          <SeasonalUsefulCard
-            season="1期"
-            cards={fetchCards.cards.filter(
-              (card) => card.card_release.season === 1
-            )}
-          />
-          <SeasonalUsefulCard
-            season="2期"
-            cards={fetchCards.cards.filter(
-              (card) => card.card_release.season === 2
-            )}
-          />
-          <SeasonalUsefulCard
-            season="3期"
-            cards={fetchCards.cards.filter(
-              (card) => card.card_release.season === 3
-            )}
-          />
-          <SeasonalUsefulCard
-            season="4期"
-            cards={fetchCards.cards.filter(
-              (card) => card.card_release.season === 4
-            )}
-          />
-          <SeasonalUsefulCard
-            season="5期"
-            cards={fetchCards.cards.filter(
-              (card) => card.card_release.season === 5
-            )}
-          />
-        </div>
-      </PageTemplate>
-    </>
+    <PageTemplate>
+      <div css={main}>
+        <SeasonalUsefulCard
+          season="1期"
+          cards={fetchCards.cards.filter(
+            (card) => card.card_release.season === 1
+          )}
+        />
+        <SeasonalUsefulCard
+          season="2期"
+          cards={fetchCards.cards.filter(
+            (card) => card.card_release.season === 2
+          )}
+        />
+        <SeasonalUsefulCard
+          season="3期"
+          cards={fetchCards.cards.filter(
+            (card) => card.card_release.season === 3
+          )}
+        />
+        <SeasonalUsefulCard
+          season="4期"
+          cards={fetchCards.cards.filter(
+            (card) => card.card_release.season === 4
+          )}
+        />
+        <SeasonalUsefulCard
+          season="5期"
+          cards={fetchCards.cards.filter(
+            (card) => card.card_release.season === 5
+          )}
+        />
+      </div>
+    </PageTemplate>
   );
 }

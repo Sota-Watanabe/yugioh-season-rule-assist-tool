@@ -4,6 +4,7 @@ import { Header } from "@/app/components/header";
 import { PageLinks } from "@/app/components/page-links";
 import { LimitRegulationAccordion } from "../components/limit-regulation-accordion";
 import { limitRegulationList } from "@/app/domains/models/limit-regulation-list";
+import { PageTemplate } from "../components/page-template";
 
 const top = css`
   background: #084371;
@@ -23,11 +24,7 @@ const main = css`
 
 export default function CardListPage() {
   return (
-    <>
-      <Header />
-      <div css={top}>
-        <PageLinks />
-      </div>
+    <PageTemplate>
       <div css={main}>
         {limitRegulationList.map((limitRegulation) => (
           <LimitRegulationAccordion
@@ -36,6 +33,6 @@ export default function CardListPage() {
           />
         ))}
       </div>
-    </>
+    </PageTemplate>
   );
 }

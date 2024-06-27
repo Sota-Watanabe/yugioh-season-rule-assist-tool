@@ -19,6 +19,7 @@ import { TextFilter } from "@/app/components/text-filter";
 import { sortOptions } from "../domains/models/search-params";
 import { ResultCardsHeader } from "../components/result-cards-header";
 import { GoogleAd } from "../components/googlead";
+import { PageTemplate } from "../components/page-template";
 
 const top = css`
   background: #084371;
@@ -86,66 +87,46 @@ export default function CardListPage() {
 
   const isEmpty = fetchCards.totalCount === 0;
   return (
-    <>
-      <Header />
-      <div css={top}>
-        <PageLinks />
-      </div>
-      <div
-        css={css`
-          display: flex;
-        `}
-      >
-        <GoogleAd
-          css={css`
-            flex: 1;
-          `}
-        />
-        <div css={main}>
-          <FormProvider {...useFormMethods}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="search-header">
-                <div className="text-filter">
-                  <TextFilter />
-                </div>
-                <div css={filterBtn} onClick={() => setIsOpen(!isOpen)}>
-                  <p className="text">フィルタリング</p>
-                  {isOpen && (
-                    <KeyboardArrowUpIcon fontSize="large" className="icon" />
-                  )}
-                  {isOpen || (
-                    <KeyboardArrowDownIcon fontSize="large" className="icon" />
-                  )}
-                </div>
+    <PageTemplate>
+      <div css={main}>
+        <FormProvider {...useFormMethods}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="search-header">
+              <div className="text-filter">
+                <TextFilter />
               </div>
-              {isOpen && <FilterList onClear={onClear} />}
-              {isEmpty && <Empty searchText={getValues().searchText} />}
-              {isEmpty || (
-                <>
-                  <ResultCardsHeader
-                    totalCount={totalCount}
-                    onSubmit={onSubmit}
+              <div css={filterBtn} onClick={() => setIsOpen(!isOpen)}>
+                <p className="text">フィルタリング</p>
+                {isOpen && (
+                  <KeyboardArrowUpIcon fontSize="large" className="icon" />
+                )}
+                {isOpen || (
+                  <KeyboardArrowDownIcon fontSize="large" className="icon" />
+                )}
+              </div>
+            </div>
+            {isOpen && <FilterList onClear={onClear} />}
+            {isEmpty && <Empty searchText={getValues().searchText} />}
+            {isEmpty || (
+              <>
+                <ResultCardsHeader
+                  totalCount={totalCount}
+                  onSubmit={onSubmit}
+                />
+                <CardList values={fetchCards.cards} />
+                <div css={pagination}>
+                  <Pagination
+                    count={Math.ceil(totalCount / PERPAGE)} //総ページ数
+                    color="primary"
+                    onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
+                    page={page}
                   />
-                  <CardList values={fetchCards.cards} />
-                  <div css={pagination}>
-                    <Pagination
-                      count={Math.ceil(totalCount / PERPAGE)} //総ページ数
-                      color="primary"
-                      onChange={(e, page) => updatePage(page)} //変更されたときに走る関数。第2引数にページ番号が入る
-                      page={page}
-                    />
-                  </div>
-                </>
-              )}
-            </form>
-          </FormProvider>
-        </div>
-        <GoogleAd
-          css={css`
-            flex: 1;
-          `}
-        />
+                </div>
+              </>
+            )}
+          </form>
+        </FormProvider>
       </div>
-    </>
+    </PageTemplate>
   );
 }
