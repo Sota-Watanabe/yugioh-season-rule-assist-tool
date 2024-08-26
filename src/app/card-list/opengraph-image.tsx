@@ -2,7 +2,6 @@ import { ImageResponse } from "next/server";
 import React from "react";
 
 export const runtime = "edge";
-export const dynamic = "force-dynamic";
 
 // Image metadata
 export const alt = "About Acme";
